@@ -1,17 +1,16 @@
 
-import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int total = 0;
-        int number;
+        Book book1 = new Book("2025 Kings", "Martin Luther King Jr.", 298);
+        Book book2 = new Book("Lebron James", "NBA", 523);
+        Book book3 = new Book("MessiRonaldo", "Soccer", 180);
 
-        for (int a = 1; a <= 5; a++) {
-            System.out.print("Enter number " + a + ": ");
-            number = scan.nextInt();
-            total += number;
-        }
-        System.out.println("\nTotal Number: " + total);
+        System.out.println();
 
+        book1.displayInfo();
+        book2.borrowBook();
+        book2.displayInfo();
+        book3.returnBook();
+        book3.displayInfo();
     }
 }
