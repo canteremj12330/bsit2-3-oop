@@ -9,7 +9,7 @@ public class Book {
         author = bookAuthor;
         pages = bookPages;
         isAvailable = true;
-        System.out.println("A new book '" + title + "' by " + author + " has been added to the library!");
+        System.out.println("A new book" + title + "by" + author + " has been added to the library!");
     }
 
     public void displayInfo() {
@@ -25,8 +25,6 @@ public class Book {
         if (isAvailable) {
             isAvailable = false;
             System.out.println("Book Borrowed");
-        } else {
-            System.out.println("Sorry, the book is already borrowed.");
         }
     }
 
