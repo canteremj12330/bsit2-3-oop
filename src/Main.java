@@ -1,15 +1,25 @@
 public class Main {
     public static void main(String[] args) {
-        GradeCalculator gcalculator = new GradeCalculator();
+        System.out.println("=== EMPLOYEE MANAGEMENT SYSTEM ===\n");
 
+        // Create instances
+        Manager manager = new Manager("Alice Smith", 2001, 80000, "Engineering", 15000, 8);
+        Developer developer = new Developer("Bob Johnson", 2002, 70000, "Engineering", "Java", 5);
+        Intern intern = new Intern("Charlie Brown", 2003, 30000, "Engineering", "Tech University", true);
 
-        String studentName = "John Smith";
-        double average = gcalculator.calculateAverage(85.5, 92.0, 78.5, 90.0);
-        String letterGrade = gcalculator.getLetterGrade(average);
+        System.out.println("\n--- Testing Manager ---");
+        manager.displayInfo();
+        manager.work();
+        System.out.println("Monthly Salary: $" + manager.calculateSalary());
 
+        System.out.println("\n--- Testing Developer ---");
+        developer.displayInfo();
+        developer.work();
+        System.out.println("Monthly Salary: $" + developer.calculateSalary());
 
-        gcalculator.displayResult(studentName, average);
-
-        gcalculator.displayResult(studentName, average, letterGrade);
+        System.out.println("\n--- Testing Intern ---");
+        intern.displayInfo();
+        intern.work();
+        System.out.println("Monthly Salary: $" + intern.calculateSalary());
     }
 }
