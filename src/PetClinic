@@ -1,0 +1,123 @@
+
+class PetService {
+    private static final double BASE_FEE = 50.0;
+    private static final double VACCINATION_FEE = 25.0;
+    private static final double GROOMING_FEE = 30.0;
+
+    public double calculateFee() {
+        return BASE_FEE;
+    }
+
+    public double calculateFee(boolean withVaccination) {
+        if (withVaccination) {
+            return BASE_FEE + VACCINATION_FEE;
+        }
+        return BASE_FEE;
+    }
+
+    public double calculateFee(boolean withVaccination, boolean withGrooming) {
+        double total = BASE_FEE;
+        if (withVaccination) total += VACCINATION_FEE;
+        if (withGrooming) total += GROOMING_FEE;
+        return total;
+    }
+
+    public double calculateFee(String ignoredEmergencyType) {
+        return 200.0;
+    }
+}
+
+
+abstract class Pet {
+    protected String name;
+    protected int age;
+
+    public Pet(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void displayInfo() {
+        System.out.println("Pet Name: " + name + ", Age: " + age);
+    }
+
+    public abstract void makeSound();
+}
+
+class Dog extends Pet implements Trainable {
+    public Dog(String name, int age) {
+        super(name, age);
+    }
+
+    public void makeSound() {
+        System.out.println(name + " says: Woof! Woof!");
+    }
+
+    public void performTrick() {
+        System.out.println("Training " + name + ": Sits and shakes hands");
+    }
+}
+
+class Cat extends Pet {
+    public Cat(String name, int age) {
+        super(name, age);
+    }
+
+    public void makeSound() {
+        System.out.println(name + " says: Meow! Meow!");
+    }
+}
+
+class Bird extends Pet implements Trainable {
+    public Bird(String name, int age) {
+        super(name, age);
+    }
+
+    public void makeSound() {
+        System.out.println(name + " says: Tweet! Tweet!");
+    }
+
+    public void performTrick() {
+        System.out.println("Training " + name + ": Flies in circles and lands on perch");
+    }
+}
+
+
+interface Trainable {
+    void performTrick();
+}
+
+// MAIN PROGRAM
+public class PetClinic {
+    public static void main(String[] args) {
+        PetService service = new PetService();
+        System.out.println("Basic checkup: $" + service.calculateFee());
+        System.out.println("Checkup with vaccination: $" + service.calculateFee(true));
+        System.out.println("Full service: $" + service.calculateFee(true, true));
+        System.out.println("Emergency: $" + service.calculateFee("emergency"));
+
+        System.out.println("\nWelcome to the Pet Clinic!");
+        System.out.println("==========================");
+
+        Pet dog = new Dog("Buddy", 3);
+        Pet cat = new Cat("Whiskers", 2);
+        Pet bird = new Bird("Tweety", 1);
+
+        dog.displayInfo();
+        dog.makeSound();
+        System.out.println();
+
+        cat.displayInfo();
+        cat.makeSound();
+        System.out.println();
+
+        bird.displayInfo();
+        bird.makeSound();
+
+        System.out.println("\nTraining Session Started!");
+        System.out.println("==========================");
+        ((Trainable) dog).performTrick();
+        ((Trainable) bird).performTrick();
+    }
+}
+
